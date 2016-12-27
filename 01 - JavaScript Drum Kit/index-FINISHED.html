@@ -9,42 +9,42 @@
 
 
   <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
-    </div>
+      <div data-key="89" class="key" style="top: 0px; left: 5px" onclick="playSound(89)">
+          <kbd>Y</kbd>
+          <span class="sound">clap</span>
+      </div>
+      <div data-key="85" class="key" style="top: 0px; left: 70px" onclick="playSound(85)">
+          <kbd>U</kbd>
+          <span class="sound">hihat</span>
+      </div>
+      <div data-key="73" class="key" style="top: 0px; left: 135px" onclick="playSound(73)">
+          <kbd>I</kbd>
+          <span class="sound">kick</span>
+      </div>
+      <div data-key="72" class="key" style="top: 75px; left: 25px" onclick="playSound(72)">
+          <kbd>H</kbd>
+          <span class="sound">openhat</span>
+      </div>
+      <div data-key="74" class="key" style="top: 75px; left: 90px" onclick="playSound(74)">
+          <kbd>J</kbd>
+          <span class="sound">boom</span>
+      </div>
+      <div data-key="75" class="key" style="top: 75px; left: 155px" onclick="playSound(75)">
+          <kbd>K</kbd>
+          <span class="sound">ride</span>
+      </div>
+      <div data-key="66" class="key" style="top: 150px; left: 5px" onclick="playSound(66)">
+          <kbd>B</kbd>
+          <span class="sound">snare</span>
+      </div>
+      <div data-key="78" class="key" style="top: 150px; left: 70px" onclick="playSound(78)">
+          <kbd>N</kbd>
+          <span class="sound">tom</span>
+      </div>
+      <div data-key="77" class="key" style="top: 150px; left: 135px" onclick="playSound(77)">
+          <kbd>M</kbd>
+          <span class="sound">tink</span>
+      </div>
   </div>
 
   <audio data-key="65" src="sounds/clap.wav"></audio>
@@ -57,26 +57,24 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
-  function removeTransition(e) {
-    if (e.propertyName !== 'transform') return;
-    e.target.classList.remove('playing');
-  }
-
-  function playSound(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-    if (!audio) return;
-
-    key.classList.add('playing');
-    audio.currentTime = 0;
-    audio.play();
-  }
-
-  const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-  window.addEventListener('keydown', playSound);
-</script>
+  <script>
+      function removeTransition(e) {
+          if (e.propertyName !== 'transform') return;
+          e.target.classList.remove('playing');
+      }
+      function playSound(e) {
+          var thisKeyCode = (Number.isInteger(e)?e:e.keyCode);
+          const audio = document.querySelector(`audio[data-key="${thisKeyCode}"]`);
+          const key = document.querySelector(`div[data-key="${thisKeyCode}"]`);
+          if (!audio) return;
+          key.classList.add('playing');
+          audio.currentTime = 0;
+          audio.play();
+      }
+      const keys = Array.from(document.querySelectorAll('.key'));
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+      window.addEventListener('keydown', playSound);
+  </script>
 
 
 </body>
