@@ -12,6 +12,7 @@
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
+        <div class="hand screw"></div>
       </div>
     </div>
 
@@ -65,6 +66,21 @@
       transform: rotate(90deg);
       transition: all 0.05s;
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+    .hour-hand {
+    	width:35%;
+    	left:15%;
+    }
+    .second-hand {
+       height:3px;	
+    }
+    .screw {
+    	background: white;
+    	top: 51%;
+    	left: 47%;
+    	width:10px;
+    	height: 10px;
+    	border-radius: 50%;
     }
 </style>
 
